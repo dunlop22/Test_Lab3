@@ -20,3 +20,11 @@ class TestFileReader(unittest.TestCase):
         filereader = FileReader()
         result = filereader.CheckFileExist("")
         self.assertEqual(result, False)
+
+    def testCheckFileDoesNotExistAfterRemove(self):
+        #Создание файла
+        open("test.txt", "w").close()
+        filereader = FileReader()
+        os.remove("test.txt")
+        result = filereader.CheckFileExist("test.txt")
+        self.assertEqual(result, False)
