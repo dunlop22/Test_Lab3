@@ -72,3 +72,11 @@ class TestGame(unittest.TestCase):
         result = game.mixQuestions(temp)
 
         self.assertNotEqual(temp, result)
+
+    def testMixQuestionsCorrectNumberOfElems(self):
+        temp = [n for n in range(10)]
+        game = Game()
+
+        result = len(game.mixQuestions(temp))
+
+        self.assertEqual(len(temp), result)

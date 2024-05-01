@@ -10,4 +10,5 @@ class FileReader():
 
 class Game():
     def mixQuestions(self, questions):
-        return 0
+        result = [1 for i in range(len(questions))]
+        return result
