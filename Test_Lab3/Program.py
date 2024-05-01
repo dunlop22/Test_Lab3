@@ -7,3 +7,6 @@ class FileReader():
 
     def CheckInfoInFile(self, filename):
         return os.stat(filename).st_size != 0
+
+class Game():
+    pass

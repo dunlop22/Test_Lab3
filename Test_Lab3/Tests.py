@@ -57,3 +57,8 @@ class TestFileReader(unittest.TestCase):
         os.remove("test.txt")
 
         self.assertEqual(result, False)
+
+class TestGame(unittest.TestCase):
+    def testGameClassCreation(self):
+        game = Game()
+        self.assertIsNotNone(game)
