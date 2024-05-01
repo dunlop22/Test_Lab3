@@ -88,5 +88,6 @@ class TestGame(unittest.TestCase):
         game = Game()
 
         result = game.mixQuestions(temp)
+        number = len(set(result))
 
-        self.assertEqual(len(set(result)), len(result))
+        self.assertEqual(number, len(result))
