@@ -8,7 +8,6 @@ class TestFileReader(unittest.TestCase):
         filereader = FileReader()
         self.assertIsNotNone(filereader)
 
-    
     def testCheckFileExist(self):
         #Создание файла
         open("test.txt", "w").close()
@@ -16,3 +15,8 @@ class TestFileReader(unittest.TestCase):
         result = filereader.CheckFileExist("test.txt")
         os.remove("test.txt")
         self.assertEqual(result, True)
+        
+    def testCheckFileDoesNotExist(self):
+        filereader = FileReader()
+        result = filereader.CheckFileExist("")
+        self.assertEqual(result, False)
