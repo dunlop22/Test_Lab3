@@ -6,4 +6,4 @@ class FileReader():
         return os.path.isfile(filename)
 
     def CheckInfoInFile(self, filename):
-        return True
+        return os.stat(filename).st_size != 0

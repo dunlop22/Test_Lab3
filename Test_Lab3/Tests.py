@@ -48,3 +48,12 @@ class TestFileReader(unittest.TestCase):
         os.remove("test.txt")
 
         self.assertEqual(result, True)
+
+    def testCheckFileIsEmpty(self):
+        open("test.txt", "w").close()
+
+        filereader = FileReader()
+        result = filereader.CheckInfoInFile("test.txt")
+        os.remove("test.txt")
+
+        self.assertEqual(result, False)
