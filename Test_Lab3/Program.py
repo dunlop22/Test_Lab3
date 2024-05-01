@@ -1,7 +1,7 @@
 import os
 
 class FileReader():
-    #todo проверить наличие файла, считать вопросы и ответы
+    #todo считать вопросы и ответы
     def CheckFileExist(self, filename):        
         return os.path.isfile(filename)
 
@@ -9,4 +9,5 @@ class FileReader():
         return os.stat(filename).st_size != 0
 
 class Game():
-    pass
+    def mixQuestions(self, questions):
+        return 0
