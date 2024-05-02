@@ -19,7 +19,7 @@ class Game():
         self.rounds.append(Round(question, answers.copy(), answer))
 
     def GetRounsNumber(self):
-        return 0
+        return len(self.rounds)
 
     def mixQuestions(self, questions):
         result = questions.copy()

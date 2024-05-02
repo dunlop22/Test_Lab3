@@ -119,6 +119,15 @@ class TestGame(unittest.TestCase):
         self.assertEqual(result, 0)
 
 
+    def testGetRoundNumberTwo(self):
+        game = Game()
+        game.AddRound("Вопрос 1", ["1", "2", "3", "4"], "1")
+        game.AddRound("Вопрос 2", ["1", "2", "3", "4"], "2")
+
+        result = game.GetRounsNumber()
+        self.assertEqual(result, 2)
+
+
 class TestRound(unittest.TestCase):
 
     def testRoundClassCreation(self):
