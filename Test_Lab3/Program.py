@@ -22,3 +22,8 @@ class Round():
 
     def CheckAnswer(self, answer):
         return answer == self.answer
+
+def main():
+    pass
+
+main()
