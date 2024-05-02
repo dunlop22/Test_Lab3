@@ -58,6 +58,8 @@ class TestFileReader(unittest.TestCase):
 
         self.assertEqual(result, False)
 
+
+
 class TestGame(unittest.TestCase):
 
     def testGameClassCreation(self):
@@ -110,21 +112,25 @@ class TestGame(unittest.TestCase):
             self.assertEqual(f, True)
 
 
+
 class TestRound(unittest.TestCase):
 
     def testRoundClassCreation(self):
         r = Round()
         self.assertIsNotNone(r)
 
+
     def testRoundCheckAnswerCorrect(self):
         rnd = Round("Вопрос", ["1", "2", "3", "4"], "2")
         result = rnd.CheckAnswer("2")
         self.assertEqual(result, True)
 
+
     def testRoundCheckAnswerIncorrect(self):
         rnd = Round("Вопрос", ["1", "2", "3", "4"], "2")
         result = rnd.CheckAnswer("3")
         self.assertEqual(result, False)
+
 
     def testRoundCheckAnswerNoAnswer(self):
         rnd = Round("Вопрос", ["1", "2", "3", "4"], "2")
