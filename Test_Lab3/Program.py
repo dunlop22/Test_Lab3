@@ -10,8 +10,28 @@ class FileReader():
         return os.stat(filename).st_size != 0
 
     def ReadQuestions(self, filename, game):
-        game.AddRound("Вопрос 1", ["1", "2", "3", "4"], "1")
-        game.AddRound("Вопрос 2", ["1", "2", "3", "4"], "2")
+        f = open(filename)
+        num_str = 0
+
+        answers = []
+
+        for line in f:
+            #Запись вопроса
+            if num_str == 0:
+                question = line
+
+            #запись вариантов ответа
+            elif (num_str > 0) and (num_str < 5):
+                answers.append(line)
+
+            num_str += 1
+
+            if (num_str == 5):
+                game.AddRound(question, answers.copy(), answers[0])
+                num_str = 0
+                answers.clear()
+
+        f.close()
 
 
 class Game():
