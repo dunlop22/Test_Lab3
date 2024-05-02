@@ -9,12 +9,17 @@ class FileReader():
     def CheckInfoInFile(self, filename):
         return os.stat(filename).st_size != 0
 
+
+
 class Game():
     def __init__(self):
         self.rounds = []
 
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
+
+    def GetRounsNumber(self):
+        return 0
 
     def mixQuestions(self, questions):
         result = questions.copy()

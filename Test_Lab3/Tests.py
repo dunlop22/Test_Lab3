@@ -113,6 +113,11 @@ class TestGame(unittest.TestCase):
             self.assertEqual(f, True)
 
 
+    def testGetRoundNumberZero(self):
+        game = Game()
+        result = game.GetRounsNumber()
+        self.assertEqual(result, 0)
+
 
 class TestRound(unittest.TestCase):
 
