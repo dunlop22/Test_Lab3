@@ -14,3 +14,6 @@ class Game():
         result = questions.copy()
         random.shuffle(result)
         return result
+
+class Round():
+    pass

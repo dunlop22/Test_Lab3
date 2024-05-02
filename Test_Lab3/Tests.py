@@ -108,3 +108,10 @@ class TestGame(unittest.TestCase):
                     break
 
             self.assertEqual(f, True)
+
+
+class TestRound(unittest.TestCase):
+
+    def testRoundClassCreation(self):
+        r = Round()
+        self.assertIsNotNone(r)
