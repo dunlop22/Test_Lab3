@@ -104,7 +104,7 @@ class TestGame(unittest.TestCase):
         temp = [n for n in range(10)]
         game = Game()
 
-        result = game.mixQuestions(temp)
+        result = game.MixQuestions(temp)
 
         self.assertNotEqual(temp, result)
 
@@ -113,7 +113,7 @@ class TestGame(unittest.TestCase):
         temp = [n for n in range(10)]
         game = Game()
 
-        result = len(game.mixQuestions(temp))
+        result = len(game.MixQuestions(temp))
 
         self.assertEqual(len(temp), result)
 
@@ -122,7 +122,7 @@ class TestGame(unittest.TestCase):
         temp = [n for n in range(10)]
         game = Game()
 
-        result = game.mixQuestions(temp)
+        result = game.MixQuestions(temp)
         number = len(set(result))
 
         self.assertEqual(number, len(result))
@@ -132,7 +132,7 @@ class TestGame(unittest.TestCase):
         temp = [n for n in range(10)]
         game = Game()
 
-        result = game.mixQuestions(temp)
+        result = game.MixQuestions(temp)
         
         for item in temp:
             f = False
