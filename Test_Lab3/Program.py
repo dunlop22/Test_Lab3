@@ -10,6 +10,12 @@ class FileReader():
         return os.stat(filename).st_size != 0
 
 class Game():
+    def __init__(self):
+        self.rounds = []
+
+    def AddRound(self, question, answers, answer):
+        self.rounds.append(Round(question, answers.copy(), answer))
+
     def mixQuestions(self, questions):
         result = questions.copy()
         random.shuffle(result)
