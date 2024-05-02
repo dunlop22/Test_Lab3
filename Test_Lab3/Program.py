@@ -57,6 +57,13 @@ class Round():
     def CheckAnswer(self, answer):
         return answer == self.answer
 
+    def Print(self):
+        print("Вопрос: ", self.question, end = "")
+        random.shuffle(self.answers)
+
+        for i in range (4):
+            print("\n",(i + 1), ") ", self.answers[i][:len(self.answers[i]) - 1], end = "", sep='')
+
 def main():
     fileReader = FileReader()
     game = Game()
@@ -66,6 +73,7 @@ def main():
     if fileReader.CheckFileExist(filename):
         if (fileReader.CheckInfoInFile(filename)):
             fileReader.ReadQuestions(filename, game)
+            game.rounds[0].Print()
         else:
             print("Файл с вопросами пуст! Поиграть не получится(")
     else:
