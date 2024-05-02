@@ -2,13 +2,16 @@ import os
 import random
 
 class FileReader():
-    #todo считать вопросы и ответы
+    #todo СЃС‡РёС‚Р°С‚СЊ РІРѕРїСЂРѕСЃС‹ Рё РѕС‚РІРµС‚С‹
     def CheckFileExist(self, filename):        
         return os.path.isfile(filename)
 
     def CheckInfoInFile(self, filename):
         return os.stat(filename).st_size != 0
 
+    def ReadQuestions(self, filename, game):
+        game.AddRound("Р’РѕРїСЂРѕСЃ 1", ["1", "2", "3", "4"], "1")
+        game.AddRound("Р’РѕРїСЂРѕСЃ 2", ["1", "2", "3", "4"], "2")
 
 
 class Game():
@@ -28,7 +31,7 @@ class Game():
 
 class Round():
     def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
-        #todo сохранение параметров
+        #todo СЃРѕС…СЂР°РЅРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ
         self.answer = answer
 
     def CheckAnswer(self, answer):

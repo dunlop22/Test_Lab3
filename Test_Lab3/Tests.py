@@ -59,6 +59,22 @@ class TestFileReader(unittest.TestCase):
 
         self.assertEqual(result, False)
 
+    def testReadQuestions(self):
+        game = Game()
+        fileReader = FileReader()
+
+        temp = open("test.txt", "w")
+        for _ in range(11):
+            temp.write("Hello world")
+        temp.close()
+
+        fileReader.ReadQuestions("test.txt", game)
+        result = game.GetRounsNumber()
+
+        os.remove("test.txt")
+
+        self.assertEqual(result, 2)
+
 
 
 class TestGame(unittest.TestCase):
