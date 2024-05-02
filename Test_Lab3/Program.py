@@ -36,6 +36,7 @@ class FileReader():
 class Game():
     def __init__(self):
         self.rounds = []
+        self.score = 0
 
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
@@ -52,7 +53,7 @@ class Game():
         pass
 
     def GetScore(self):
-        return 0
+        return self.score
 
 class Round():
     def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
