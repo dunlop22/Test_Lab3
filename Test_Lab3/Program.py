@@ -37,6 +37,7 @@ class Game():
     def __init__(self):
         self.rounds = []
         self.score = 0
+        self.question_number = 0
 
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
@@ -50,7 +51,21 @@ class Game():
         return result
 
     def Start(self):
-        pass
+        self.score = 0
+        self.question_number = 0
+        questions = self.MixQuestions(self.rounds)
+
+        for i in range(len(questions)):
+            self.PrintHeader()
+            self.question_number += 1
+
+            questions[i].Print()
+
+    def PrintHeader(self):
+        os.system('cls')
+        print("Приветствуем вас в игре \"Кто хочет стать милиционером\"!")            
+        print("Текущий счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
+        print("Вопрос №", self.question_number + 1, "\n", sep = "")
 
     def GetScore(self):
         return self.score
@@ -80,6 +95,7 @@ def main():
     if fileReader.CheckFileExist(filename):
         if (fileReader.CheckInfoInFile(filename)):
             fileReader.ReadQuestions(filename, game)
+            game.Start()
         else:
             print("Файл с вопросами пуст! Поиграть не получится(")
     else:
