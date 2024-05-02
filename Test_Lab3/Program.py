@@ -20,4 +20,6 @@ class Round():
         pass
 
     def CheckAnswer(self, answer):
+        if (answer == "3"):
+            return False
         return True
