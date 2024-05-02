@@ -1,4 +1,5 @@
 import os
+import random
 
 class FileReader():
     #todo считать вопросы и ответы
@@ -10,5 +11,6 @@ class FileReader():
 
 class Game():
     def mixQuestions(self, questions):
-        result = [i + 1 for i in range(len(questions))]
+        result = questions.copy()
+        random.shuffle(result)
         return result

@@ -91,3 +91,20 @@ class TestGame(unittest.TestCase):
         number = len(set(result))
 
         self.assertEqual(number, len(result))
+
+
+    def testMixQuestionsCorrectValues(self):
+        temp = [n for n in range(10)]
+        game = Game()
+
+        result = game.mixQuestions(temp)
+        
+        for item in temp:
+            f = False
+
+            for res in result:
+                if item == res:
+                    f = True
+                    break
+
+            self.assertEqual(f, True)
