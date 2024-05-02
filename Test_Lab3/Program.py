@@ -50,7 +50,8 @@ class Game():
 
 class Round():
     def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
-        #todo сохранение параметров
+        self.question = question
+        self.answers = answers.copy()
         self.answer = answer
 
     def CheckAnswer(self, answer):
