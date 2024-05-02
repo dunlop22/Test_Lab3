@@ -64,7 +64,7 @@ def main():
 
     if fileReader.CheckFileExist(filename):
         if (fileReader.CheckInfoInFile(filename)):
-            pass
+            fileReader.ReadQuestions(filename, game)
         else:
             print("Файл с вопросами пуст! Поиграть не получится(")
     else:
