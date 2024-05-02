@@ -17,9 +17,8 @@ class Game():
 
 class Round():
     def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
-        pass
+        #todo сохранение параметров
+        self.answer = answer
 
     def CheckAnswer(self, answer):
-        if (answer == "3"):
-            return False
-        return True
+        return answer == self.answer

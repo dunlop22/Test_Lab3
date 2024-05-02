@@ -125,3 +125,8 @@ class TestRound(unittest.TestCase):
         rnd = Round("Вопрос", ["1", "2", "3", "4"], "2")
         result = rnd.CheckAnswer("3")
         self.assertEqual(result, False)
+
+    def testRoundCheckAnswerNoAnswer(self):
+        rnd = Round("Вопрос", ["1", "2", "3", "4"], "2")
+        result = rnd.CheckAnswer("")
+        self.assertEqual(result, False)
