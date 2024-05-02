@@ -160,6 +160,15 @@ class TestGame(unittest.TestCase):
         self.assertEqual(result, 2)
 
 
+    def testStartScoreIsZero(self):
+        game = Game()
+        game.Start()
+
+        result = game.GetScore()
+        self.assertEqual(result, 0)
+
+
+
 class TestRound(unittest.TestCase):
 
     def testRoundClassCreation(self):

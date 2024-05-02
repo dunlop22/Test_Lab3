@@ -48,6 +48,12 @@ class Game():
         random.shuffle(result)
         return result
 
+    def Start(self):
+        pass
+
+    def GetScore(self):
+        return 0
+
 class Round():
     def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
         self.question = question
