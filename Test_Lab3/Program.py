@@ -16,4 +16,8 @@ class Game():
         return result
 
 class Round():
-    pass
+    def __init__(self, question = "", answers = ["", "", "", ""], answer = ""):
+        pass
+
+    def CheckAnswer(self, answer):
+        return True
