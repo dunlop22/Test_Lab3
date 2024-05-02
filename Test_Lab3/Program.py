@@ -2,7 +2,6 @@ import os
 import random
 
 class FileReader():
-    #todo считать вопросы и ответы
     def CheckFileExist(self, filename):        
         return os.path.isfile(filename)
 
@@ -58,6 +57,17 @@ class Round():
         return answer == self.answer
 
 def main():
-    pass
+    fileReader = FileReader()
+    game = Game()
+
+    filename = "questions.txt"
+
+    if fileReader.CheckFileExist(filename):
+        if (fileReader.CheckInfoInFile(filename)):
+            pass
+        else:
+            print("Файл с вопросами пуст! Поиграть не получится(")
+    else:
+        print("Файл с вопросами отсутсвует! Поиграть не получится(")
 
 main()
