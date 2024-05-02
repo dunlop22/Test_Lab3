@@ -43,7 +43,7 @@ class Game():
     def GetRounsNumber(self):
         return len(self.rounds)
 
-    def mixQuestions(self, questions):
+    def MixQuestions(self, questions):
         result = questions.copy()
         random.shuffle(result)
         return result
