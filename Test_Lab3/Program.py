@@ -1,6 +1,7 @@
 import msvcrt
 import os
 import random
+import time
 
 class FileReader():
     def CheckFileExist(self, filename):        
@@ -63,8 +64,20 @@ class Game():
             questions[i].Print()
             answer = self.GetUserAnswer()
             print(answer)
+
+            print("\n\nИ это", end = "", flush=True)
+            for _ in range (5):
+                print(".", end = "", flush=True)
+            time.sleep(0.5)
+
             if (questions[i].CheckAnswer(questions[i].answers[answer - 1])):
                 self.score += 1
+                print("\n\nПравильный ответ!   +1 очко ")
+                time.sleep(2)
+            else:
+                print("\n\nОтвет неверный! Думайте лучше ")
+                time.sleep(2)
+                
 
                 
     def GetUserAnswer(self):
