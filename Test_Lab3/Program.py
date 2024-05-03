@@ -36,6 +36,8 @@ class FileReader():
 
 
 class Game():
+    zvanie = ["Рядовой полиции", "Младший сержант полиции", "Сержант полиции", "Старший сержант полиции", "Старшина полиции", "Прапорщик полиции", "Старший прапорщик полиции", "Младший лейтенант полиции", "Лейтенант полиции", "Старший лейтенант полиции", "Капитан полиции", "Майор полиции", "Подполковник полиции", "Полковник полиции"]
+    
     def __init__(self):
         self.rounds = []
         self.score = 0
@@ -51,6 +53,9 @@ class Game():
         result = questions.copy()
         random.shuffle(result)
         return result
+
+    def CheckResult(self):
+        print("Игра окончена. Ваше звание:", Game.zvanie[self.GetScore()])
 
     def Start(self):
         self.score = 0
@@ -75,8 +80,13 @@ class Game():
                 print("\n\nПравильный ответ!   +1 очко ")
                 time.sleep(2)
             else:
-                print("\n\nОтвет неверный! Думайте лучше ")
+                print("\n\nОтвет неверный! Думайте лучше! ")
                 time.sleep(2)
+
+        os.system('cls')
+        print("Игра \"Кто хочет стать милиционером\" окончена!")            
+        print("Ваш счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
+        self.CheckResult()
                 
 
                 
