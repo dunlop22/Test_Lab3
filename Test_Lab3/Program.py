@@ -74,6 +74,7 @@ class Game():
     def Start(self):
         self.score = 0
         self.question_number = 0
+        clueType = 0
         questions = self.MixQuestions(self.rounds)
 
         i = 0
@@ -81,7 +82,7 @@ class Game():
         while i < len(questions):
             self.PrintHeader()
 
-            questions[i].Print()
+            questions[i].Print(clueType)
             answer = self.GetUserAnswer()
 
             if answer != -1:
@@ -100,8 +101,18 @@ class Game():
                     print("\n\nОтвет неверный! Думайте лучше! ")
                     time.sleep(2)
                 
-                    self.question_number += 1
-                    i += 1
+                self.question_number += 1
+                i += 1
+
+                if clueType > 0 and self.clues[clueType - 1] == 1:
+                    self.clues[clueType - 1] = 2
+                    clueType = 0
+            else:
+                for j in range(len(self.clues)):
+                    if self.clues[j] == 1:
+                        clueType = j + 1
+                        break
+
 
         os.system('cls')
         print("Игра \"Кто хочет стать милиционером\" окончена!")            
@@ -187,16 +198,43 @@ class Round():
         self.answers = answers.copy()
         self.answer = answer
 
+    def Generate():
+        total = 100 # общая сумма
+        n = 4 # количество чисел
+
+        nowTotal = -1
+        while nowTotal != total:
+            nums = [random.randint(0, total) for _ in range(n)]
+            nowTotal = sum(nums)
+
+        print(nums)
+        return nums
+
     def CheckAnswer(self, answer):
         return answer == self.answer
 
-    def Print(self):
+    def Print(self, clueType):
         print("\n\nВопрос: ", self.question, end = "")
         random.shuffle(self.answers)
 
+        #Помощь друга
+        if (clueType == 1):
+            friend_help = random.randint(0, 3)
+        #Помощь зала
+        elif (clueType == 2):
+            help_public = Round.Generate()
+        #50/50
+        elif (clueType == 3):
+            pass
+
         for i in range (4):
             print("\n",(i + 1), ") ", self.answers[i][:len(self.answers[i]) - 1], end = "", sep='')
-
+            if (clueType == 1):
+                if (i == friend_help):
+                    print("(Помощь друга)", sep ="", end = "")
+            elif (clueType == 2):
+                print(" (", help_public[i], ")", sep = "", end = "")
+            
         print("\n\nВведите номер ответа: ", end = "")
 
 def main():
