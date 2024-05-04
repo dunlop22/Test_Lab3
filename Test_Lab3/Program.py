@@ -37,13 +37,13 @@ class FileReader():
 
 class Game():
     zvanie = ["Рядовой полиции", "Младший сержант полиции", "Сержант полиции", "Старший сержант полиции", "Старшина полиции", "Прапорщик полиции", "Старший прапорщик полиции", "Младший лейтенант полиции", "Лейтенант полиции", "Старший лейтенант полиции", "Капитан полиции", "Майор полиции", "Подполковник полиции", "Полковник полиции"]
-    helpText = ["Звонок другу", "Помощь зала", "50/50"]
+    helpText = ["Звонок другу", "Помощь зала"]
 
     def __init__(self):
         self.rounds = []
         self.score = 0
         self.question_number = 0
-        self.clues = [0 for _ in range(3)]
+        self.clues = [0, 0]
         
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
@@ -210,9 +210,6 @@ class Round():
         #Помощь зала
         elif (clueType == 2):
             help_public = Round.Generate()
-        #50/50
-        elif (clueType == 3):
-            pass
 
         for i in range (4):
             print("\n",(i + 1), ") ", self.answers[i][:len(self.answers[i]) - 1], end = "", sep='')
