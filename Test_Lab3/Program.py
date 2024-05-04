@@ -37,11 +37,12 @@ class FileReader():
 
 class Game():
     zvanie = ["Рядовой полиции", "Младший сержант полиции", "Сержант полиции", "Старший сержант полиции", "Старшина полиции", "Прапорщик полиции", "Старший прапорщик полиции", "Младший лейтенант полиции", "Лейтенант полиции", "Старший лейтенант полиции", "Капитан полиции", "Майор полиции", "Подполковник полиции", "Полковник полиции"]
-    
+
     def __init__(self):
         self.rounds = []
         self.score = 0
         self.question_number = 0
+        self.clues = [0 for _ in range(4)]
 
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
@@ -99,7 +100,7 @@ class Game():
                 return answer
 
             #Помощь (Help)
-            if (answer == -21):
+            if (answer == -21 and len(self.clues) > 0):
                 self.ChooseHelp()
                 return -1
 
@@ -128,7 +129,9 @@ class Game():
         os.system('cls')
         print("Приветствуем вас в игре \"Кто хочет стать милиционером\"!")            
         print("Текущий счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
-        print("Вопрос №", self.question_number + 1, "\n", sep = "")
+        print("Вопрос №", self.question_number + 1, sep = "", end='')
+        if len(self.clues) > 0:
+            print("    Для подсказки нажмите ESC")
 
     def GetScore(self):
         return self.score
