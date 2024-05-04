@@ -76,26 +76,32 @@ class Game():
         self.question_number = 0
         questions = self.MixQuestions(self.rounds)
 
-        for i in range(len(questions)):
+        i = 0
+
+        while i < len(questions):
             self.PrintHeader()
-            self.question_number += 1
 
             questions[i].Print()
             answer = self.GetUserAnswer()
-            print(answer)
 
-            print("\n\nИ это", end = "", flush=True)
-            for _ in range (5):
-                print(".", end = "", flush=True)
-            time.sleep(0.5)
+            if answer != -1:
+                print(answer)
 
-            if (questions[i].CheckAnswer(questions[i].answers[answer - 1])):
-                self.score += 1
-                print("\n\nПравильный ответ!   +1 очко ")
-                time.sleep(2)
-            else:
-                print("\n\nОтвет неверный! Думайте лучше! ")
-                time.sleep(2)
+                print("\n\nИ это", end = "", flush=True)
+                for _ in range (5):
+                    print(".", end = "", flush=True)
+                time.sleep(0.5)
+
+                if (questions[i].CheckAnswer(questions[i].answers[answer - 1])):
+                    self.score += 1
+                    print("\n\nПравильный ответ!   +1 очко ")
+                    time.sleep(2)
+                else:
+                    print("\n\nОтвет неверный! Думайте лучше! ")
+                    time.sleep(2)
+                
+                    self.question_number += 1
+                    i += 1
 
         os.system('cls')
         print("Игра \"Кто хочет стать милиционером\" окончена!")            
@@ -133,11 +139,24 @@ class Game():
 
 
     def ChooseHelp(self):
+        n = self.GetCluesNumber()
+
         while True:
-             numHelp = ord(msvcrt.getch())
-             if (numHelp > 0 and numHelp < 4):
+             numHelp = ord(msvcrt.getch()) - 48
+             if (numHelp > 0 and numHelp < n + 2):
                  break
 
+        k = 1
+
+        for i in range(len(self.clues)):
+            if self.clues[i] == 0:
+                if numHelp == k:
+                    self.clues[i] = 1
+                    numHelp = i + 1
+                    break
+                else:
+                    k += 1
+                    
         #Помощь друга
         if (numHelp == 1):
             #Генерация случайного значения от 1 до 4
@@ -146,8 +165,11 @@ class Game():
         elif (numHelp == 2):
             #Процентное распределение для каждого вопроса (в сумме 4х значений - 100 единиц)
             pass
-        #Выход из меню
+        #50 на 50
         elif (numHelp == 3):
+            pass
+        #Выход из меню
+        elif (numHelp == 4):
             pass
             #exit
 
@@ -158,7 +180,7 @@ class Game():
         print("Текущий счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
         print("Вопрос №", self.question_number + 1, sep = "", end='')
         if self.GetCluesNumber() > 0:
-            print("    Для подсказки нажмите ESC")
+            print("    Для подсказки нажмите ESC", end='')
 
     def GetScore(self):
         return self.score
@@ -173,7 +195,7 @@ class Round():
         return answer == self.answer
 
     def Print(self):
-        print("Вопрос: ", self.question, end = "")
+        print("\n\nВопрос: ", self.question, end = "")
         random.shuffle(self.answers)
 
         for i in range (4):
