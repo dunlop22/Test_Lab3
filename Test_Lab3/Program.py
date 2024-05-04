@@ -168,10 +168,6 @@ class Game():
         #50 на 50
         elif (numHelp == 3):
             pass
-        #Выход из меню
-        elif (numHelp == 4):
-            pass
-            #exit
 
 
     def PrintHeader(self):
