@@ -37,18 +37,31 @@ class FileReader():
 
 class Game():
     zvanie = ["Рядовой полиции", "Младший сержант полиции", "Сержант полиции", "Старший сержант полиции", "Старшина полиции", "Прапорщик полиции", "Старший прапорщик полиции", "Младший лейтенант полиции", "Лейтенант полиции", "Старший лейтенант полиции", "Капитан полиции", "Майор полиции", "Подполковник полиции", "Полковник полиции"]
+    helpText = ["Звонок другу", "Помощь зала", "50/50"]
 
     def __init__(self):
         self.rounds = []
         self.score = 0
         self.question_number = 0
-        self.clues = [0 for _ in range(4)]
-
+        self.clues = [0 for _ in range(3)]
+        
     def AddRound(self, question, answers, answer):
         self.rounds.append(Round(question, answers.copy(), answer))
 
     def GetRounsNumber(self):
         return len(self.rounds)
+
+    def GetCluesNumber(self):
+        result = 0
+
+        for clueFlag in self.clues:
+            if clueFlag == 0:
+                result += 1
+            elif clueFlag == 1:
+                result = 0
+                break
+
+        return result
 
     def MixQuestions(self, questions):
         result = questions.copy()
@@ -89,8 +102,7 @@ class Game():
         print("Ваш счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
         self.CheckResult()
                 
-
-                
+        
     def GetUserAnswer(self):
         while True:
             answer = ord(msvcrt.getch()) - 48
@@ -100,11 +112,26 @@ class Game():
                 return answer
 
             #Помощь (Help)
-            if (answer == -21 and len(self.clues) > 0):
+            if (answer == -21 and self.GetCluesNumber() > 0):
+                self.PrintHelpVariants()
                 self.ChooseHelp()
                 return -1
+            
+              
+    def PrintHelpVariants(self):
+        os.system('cls')
+        print("Выберите вариант подсказки")
 
-                
+        i = 1
+
+        for j in range(len(self.clues)):
+            if (self.clues[j] == 0):
+                print(i, "-", Game.helpText[j])
+                i += 1
+
+        print(i, "- Назад")
+
+
     def ChooseHelp(self):
         while True:
              numHelp = ord(msvcrt.getch())
@@ -130,7 +157,7 @@ class Game():
         print("Приветствуем вас в игре \"Кто хочет стать милиционером\"!")            
         print("Текущий счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
         print("Вопрос №", self.question_number + 1, sep = "", end='')
-        if len(self.clues) > 0:
+        if self.GetCluesNumber() > 0:
             print("    Для подсказки нажмите ESC")
 
     def GetScore(self):
