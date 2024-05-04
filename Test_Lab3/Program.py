@@ -163,22 +163,10 @@ class Game():
             if self.clues[i] == 0:
                 if numHelp == k:
                     self.clues[i] = 1
-                    numHelp = i + 1
                     break
                 else:
                     k += 1
                     
-        #Помощь друга
-        if (numHelp == 1):
-            #Генерация случайного значения от 1 до 4
-            pass
-        #Помощь зала
-        elif (numHelp == 2):
-            #Процентное распределение для каждого вопроса (в сумме 4х значений - 100 единиц)
-            pass
-        #50 на 50
-        elif (numHelp == 3):
-            pass
 
 
     def PrintHeader(self):
@@ -207,7 +195,6 @@ class Round():
             nums = [random.randint(0, total) for _ in range(n)]
             nowTotal = sum(nums)
 
-        print(nums)
         return nums
 
     def CheckAnswer(self, answer):
@@ -231,7 +218,7 @@ class Round():
             print("\n",(i + 1), ") ", self.answers[i][:len(self.answers[i]) - 1], end = "", sep='')
             if (clueType == 1):
                 if (i == friend_help):
-                    print("(Помощь друга)", sep ="", end = "")
+                    print(" (Помощь друга)", sep ="", end = "")
             elif (clueType == 2):
                 print(" (", help_public[i], ")", sep = "", end = "")
             
