@@ -69,7 +69,7 @@ class Game():
         return result
 
     def CheckResult(self):
-        print("Игра окончена. Ваше звание:", Game.zvanie[self.GetScore()])
+        print("Игра окончена. \nВаше звание:", Game.zvanie[self.GetScore()])
 
     def Start(self):
         self.score = 0
@@ -91,15 +91,15 @@ class Game():
                 print("\n\nИ это", end = "", flush=True)
                 for _ in range (5):
                     print(".", end = "", flush=True)
-                time.sleep(0.5)
+                    time.sleep(0.7)
 
                 if (questions[i].CheckAnswer(questions[i].answers[answer - 1])):
                     self.score += 1
                     print("\n\nПравильный ответ!   +1 очко ")
-                    time.sleep(2)
+                    time.sleep(1)
                 else:
                     print("\n\nОтвет неверный! Думайте лучше! ")
-                    time.sleep(2)
+                    time.sleep(1)
                 
                 self.question_number += 1
                 i += 1
@@ -118,7 +118,14 @@ class Game():
         print("Игра \"Кто хочет стать милиционером\" окончена!")            
         print("Ваш счет: ", self.GetScore(), "/", self.GetRounsNumber(), sep = "")
         self.CheckResult()
-                
+        self.RestartGame()
+
+    def RestartGame(self):
+        print("\n\nДля запуска новой игры нажмите любую клавишу. \nДля выхода - ESC")
+        presskey = ord(msvcrt.getch()) - 48
+        if (presskey != -21):
+            self.Start()
+
         
     def GetUserAnswer(self):
         while True:
